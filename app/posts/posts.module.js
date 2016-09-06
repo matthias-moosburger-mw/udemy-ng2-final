@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/http', '@angular/common', './posts.component', './posts.service', '../shared/spinner.component'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/http', '@angular/common', './posts.component', './posts.service', '../users/users.service', '../shared/spinner.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', '@angular/http', '@angular/common', './posts.c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, common_1, posts_component_1, posts_service_1, spinner_component_1;
+    var core_1, http_1, common_1, posts_component_1, posts_service_1, users_service_1, spinner_component_1;
     var PostsModule;
     return {
         setters:[
@@ -29,6 +29,9 @@ System.register(['@angular/core', '@angular/http', '@angular/common', './posts.c
             function (posts_service_1_1) {
                 posts_service_1 = posts_service_1_1;
             },
+            function (users_service_1_1) {
+                users_service_1 = users_service_1_1;
+            },
             function (spinner_component_1_1) {
                 spinner_component_1 = spinner_component_1_1;
             }],
@@ -41,7 +44,7 @@ System.register(['@angular/core', '@angular/http', '@angular/common', './posts.c
                         imports: [http_1.HttpModule, common_1.CommonModule],
                         exports: [posts_component_1.PostsComponent],
                         declarations: [posts_component_1.PostsComponent, spinner_component_1.SpinnerComponent],
-                        providers: [posts_service_1.PostService],
+                        providers: [posts_service_1.PostService, users_service_1.UsersService],
                     }), 
                     __metadata('design:paramtypes', [])
                 ], PostsModule);

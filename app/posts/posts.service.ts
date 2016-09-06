@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
+import { Post } from './post';
 
 @Injectable()
 export class PostService {
@@ -12,5 +13,10 @@ export class PostService {
      loadPosts(){
          return this.http.get(this.baseUrl)
                  .map(res => res.json());
+     }
+
+     loadComments(post: Post){
+        return this.http.get(this.baseUrl + "/" + post.id + "/comments")
+                .map(res => res.json());
      }
 }
