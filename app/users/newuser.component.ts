@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { BasicValidators } from '../shared/email.validator';
+import { UsersService } from './users.service'
 
 import { User } from './user';
 
@@ -12,7 +14,7 @@ export class NewUserComponent implements OnInit {
     form: FormGroup;
     user = new User();
 
-    constructor(private formBuilder: FormBuilder) {
+    constructor(private formBuilder: FormBuilder, private userService: UsersService, private router: Router) {
         this.buildForm();
     }
 
@@ -34,6 +36,11 @@ export class NewUserComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.form.value);
+        this.userService.addUser(this.form.value).subscribe(
+            res => {
+                this.form.markAsPristine();
+                this.router.navigate(['users'])
+            }
+        );
     }
 }

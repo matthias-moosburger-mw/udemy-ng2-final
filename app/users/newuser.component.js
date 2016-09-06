@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/forms', '../shared/email.validator', './user'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/forms', '@angular/router', '../shared/email.validator', './users.service', './user'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', '@angular/forms', '../shared/email.validator',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, forms_1, email_validator_1, user_1;
+    var core_1, forms_1, router_1, email_validator_1, users_service_1, user_1;
     var NewUserComponent;
     return {
         setters:[
@@ -20,16 +20,24 @@ System.register(['@angular/core', '@angular/forms', '../shared/email.validator',
             function (forms_1_1) {
                 forms_1 = forms_1_1;
             },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
             function (email_validator_1_1) {
                 email_validator_1 = email_validator_1_1;
+            },
+            function (users_service_1_1) {
+                users_service_1 = users_service_1_1;
             },
             function (user_1_1) {
                 user_1 = user_1_1;
             }],
         execute: function() {
             NewUserComponent = (function () {
-                function NewUserComponent(formBuilder) {
+                function NewUserComponent(formBuilder, userService, router) {
                     this.formBuilder = formBuilder;
+                    this.userService = userService;
+                    this.router = router;
                     this.user = new user_1.User();
                     this.buildForm();
                 }
@@ -49,13 +57,17 @@ System.register(['@angular/core', '@angular/forms', '../shared/email.validator',
                     });
                 };
                 NewUserComponent.prototype.onSubmit = function () {
-                    console.log(this.form.value);
+                    var _this = this;
+                    this.userService.addUser(this.form.value).subscribe(function (res) {
+                        _this.form.markAsPristine();
+                        _this.router.navigate(['users']);
+                    });
                 };
                 NewUserComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/users/newuser.component.html'
                     }), 
-                    __metadata('design:paramtypes', [forms_1.FormBuilder])
+                    __metadata('design:paramtypes', [forms_1.FormBuilder, users_service_1.UsersService, router_1.Router])
                 ], NewUserComponent);
                 return NewUserComponent;
             }());

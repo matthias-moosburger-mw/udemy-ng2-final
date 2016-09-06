@@ -5,7 +5,7 @@ import { UsersService } from 'app/users/users.service';
     templateUrl: 'app/users/users.component.html'
 })
 export class UsersComponent implements OnInit {
-    users[] : any;
+    users[]: any;
 
     constructor(private service: UsersService) { }
 
