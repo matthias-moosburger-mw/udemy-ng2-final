@@ -12,12 +12,13 @@ import { PostsComponent } from './posts/posts.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar.component';
 import { UsersService } from './users/users.service';
+import { PreventUnsavedChangesGuard } from './can-deactivate-on-dirty';
 
 
 @NgModule({
   imports:      [ BrowserModule, routing, HttpModule, CommonModule, ReactiveFormsModule, FormsModule ],
   declarations: [ AppComponent, UsersComponent, NewUserComponent, PostsComponent, HomeComponent, NavbarComponent ],
-  providers:    [ UsersService ],
+  providers:    [ UsersService, PreventUnsavedChangesGuard ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

@@ -1,0 +1,1 @@
+{"version":3,"file":"can-deactivate-on-dirty.js","sourceRoot":"","sources":["can-deactivate-on-dirty.ts"],"names":[],"mappings":";;;;;;;YAQA;gBAAA;gBAOA,CAAC;gBANG,kDAAa,GAAb,UAAc,SAAwB;oBAClC,EAAE,CAAC,CAAC,SAAS,CAAC,IAAI,CAAC,KAAK,CAAC;wBACrB,MAAM,CAAC,OAAO,CAAC,mEAAmE,CAAC,CAAC;oBAExF,MAAM,CAAC,IAAI,CAAC;gBAChB,CAAC;gBACL,iCAAC;YAAD,CAAC,AAPD,IAOC;YAPD,mEAOC,CAAA"}

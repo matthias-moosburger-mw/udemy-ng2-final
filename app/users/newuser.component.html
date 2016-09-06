@@ -1,19 +1,19 @@
 <h1>Add a User</h1>
 <div class="row">
     <div class="col-md-6 col-lg-6 well">
-        <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
             <fieldset>
                 <legend>Basic data</legend>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input formControlName="name" type="text" class="form-control" id="name" required>
-                    <div class="alert alert-danger" *ngIf="addUserForm.controls.name.touched && !addUserForm.controls.name.valid">Name required</div>
+                    <div class="alert alert-danger" *ngIf="form.controls.name.touched && !form.controls.name.valid">Name required</div>
                 </div>
                 <div class="form-group">
                     <label for="email">E-Mail</label>
-                    <input formControlName="email" type="text" class="form-control" id="email">
-                    <div class="alert alert-danger" *ngIf="addUserForm.controls.email.touched && !addUserForm.controls.email.valid" (click)="logIt(email)">E-Mail Address not in valid format ...</div>
+                    <input formControlName="email" #email type="text" class="form-control" id="email">
+                    <div class="alert alert-danger" *ngIf="email.touched && !form.controls.email.valid">Email Address not in valid format ...</div>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label>
@@ -40,7 +40,7 @@
                     <input formControlName="zip" type="number" class="form-control" id="zip">
                 </div>
             </fieldset>
-            <button type="submit" [disabled]="!addUserForm.valid" class="btn btn-primary">Submit</button>
+            <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>

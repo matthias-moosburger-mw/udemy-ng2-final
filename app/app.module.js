@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/platform-browser', '@angular/http', '@angular/common', '@angular/forms', './app.component', './app.routing', './users/users.component', './users/newuser.component', './posts/posts.component', './home/home.component', './navbar.component', './users/users.service'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/platform-browser', '@angular/http', '@angular/common', '@angular/forms', './app.component', './app.routing', './users/users.component', './users/newuser.component', './posts/posts.component', './home/home.component', './navbar.component', './users/users.service', './can-deactivate-on-dirty'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', '@angular/platform-browser', '@angular/http', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, platform_browser_1, http_1, common_1, forms_1, app_component_1, app_routing_1, users_component_1, newuser_component_1, posts_component_1, home_component_1, navbar_component_1, users_service_1;
+    var core_1, platform_browser_1, http_1, common_1, forms_1, app_component_1, app_routing_1, users_component_1, newuser_component_1, posts_component_1, home_component_1, navbar_component_1, users_service_1, can_deactivate_on_dirty_1;
     var AppModule;
     return {
         setters:[
@@ -52,6 +52,9 @@ System.register(['@angular/core', '@angular/platform-browser', '@angular/http', 
             },
             function (users_service_1_1) {
                 users_service_1 = users_service_1_1;
+            },
+            function (can_deactivate_on_dirty_1_1) {
+                can_deactivate_on_dirty_1 = can_deactivate_on_dirty_1_1;
             }],
         execute: function() {
             AppModule = (function () {
@@ -61,7 +64,7 @@ System.register(['@angular/core', '@angular/platform-browser', '@angular/http', 
                     core_1.NgModule({
                         imports: [platform_browser_1.BrowserModule, app_routing_1.routing, http_1.HttpModule, common_1.CommonModule, forms_1.ReactiveFormsModule, forms_1.FormsModule],
                         declarations: [app_component_1.AppComponent, users_component_1.UsersComponent, newuser_component_1.NewUserComponent, posts_component_1.PostsComponent, home_component_1.HomeComponent, navbar_component_1.NavbarComponent],
-                        providers: [users_service_1.UsersService],
+                        providers: [users_service_1.UsersService, can_deactivate_on_dirty_1.PreventUnsavedChangesGuard],
                         bootstrap: [app_component_1.AppComponent]
                     }), 
                     __metadata('design:paramtypes', [])

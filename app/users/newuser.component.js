@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/forms', '../shared/email.validator'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/forms', '../shared/email.validator', './user'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', '@angular/forms', '../shared/email.validator']
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, forms_1, email_validator_1;
+    var core_1, forms_1, email_validator_1, user_1;
     var NewUserComponent;
     return {
         setters:[
@@ -22,17 +22,21 @@ System.register(['@angular/core', '@angular/forms', '../shared/email.validator']
             },
             function (email_validator_1_1) {
                 email_validator_1 = email_validator_1_1;
+            },
+            function (user_1_1) {
+                user_1 = user_1_1;
             }],
         execute: function() {
             NewUserComponent = (function () {
                 function NewUserComponent(formBuilder) {
                     this.formBuilder = formBuilder;
+                    this.user = new user_1.User();
                     this.buildForm();
                 }
                 NewUserComponent.prototype.ngOnInit = function () {
                 };
                 NewUserComponent.prototype.buildForm = function () {
-                    this.addUserForm = this.formBuilder.group({
+                    this.form = this.formBuilder.group({
                         name: ['', forms_1.Validators.required],
                         email: ['', email_validator_1.BasicValidators.email],
                         phone: [],
@@ -45,10 +49,7 @@ System.register(['@angular/core', '@angular/forms', '../shared/email.validator']
                     });
                 };
                 NewUserComponent.prototype.onSubmit = function () {
-                    console.log(this.addUserForm.value);
-                };
-                NewUserComponent.prototype.logIt = function (email) {
-                    console.log(email);
+                    console.log(this.form.value);
                 };
                 NewUserComponent = __decorate([
                     core_1.Component({

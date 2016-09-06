@@ -9,7 +9,8 @@ import { User } from './user';
     templateUrl: 'app/users/newuser.component.html'
 })
 export class NewUserComponent implements OnInit {
-    addUserForm: FormGroup;
+    form: FormGroup;
+    user = new User();
 
     constructor(private formBuilder: FormBuilder) {
         this.buildForm();
@@ -19,7 +20,7 @@ export class NewUserComponent implements OnInit {
     }
 
     buildForm() {
-        this.addUserForm = this.formBuilder.group({
+        this.form = this.formBuilder.group({
             name: ['', Validators.required],
             email: ['', BasicValidators.email],
             phone: [],
@@ -33,10 +34,6 @@ export class NewUserComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.addUserForm.value);
-    }
-
-    logIt(email:any){
-        console.log(email);
+        console.log(this.form.value);
     }
 }
