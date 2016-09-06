@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/common', '@angular/forms', '@angular/router', '@angular/http', './newuser.component', './users.component', './users.service', '../can-deactivate-on-dirty'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/common', '@angular/forms', '@angular/router', '@angular/http', './user-form.component', './users.component', './users.service', '../can-deactivate-on-dirty'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', '@angular/common', '@angular/forms', '@angular
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, forms_1, router_1, http_1, newuser_component_1, users_component_1, users_service_1, can_deactivate_on_dirty_1;
+    var core_1, common_1, forms_1, router_1, http_1, user_form_component_1, users_component_1, users_service_1, can_deactivate_on_dirty_1;
     var UsersModule;
     return {
         setters:[
@@ -29,8 +29,8 @@ System.register(['@angular/core', '@angular/common', '@angular/forms', '@angular
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (newuser_component_1_1) {
-                newuser_component_1 = newuser_component_1_1;
+            function (user_form_component_1_1) {
+                user_form_component_1 = user_form_component_1_1;
             },
             function (users_component_1_1) {
                 users_component_1 = users_component_1_1;
@@ -48,8 +48,8 @@ System.register(['@angular/core', '@angular/common', '@angular/forms', '@angular
                 UsersModule = __decorate([
                     core_1.NgModule({
                         imports: [common_1.CommonModule, forms_1.FormsModule, forms_1.ReactiveFormsModule, router_1.RouterModule, http_1.HttpModule],
-                        exports: [users_component_1.UsersComponent, newuser_component_1.NewUserComponent],
-                        declarations: [users_component_1.UsersComponent, newuser_component_1.NewUserComponent],
+                        exports: [users_component_1.UsersComponent, user_form_component_1.UserFormComponent],
+                        declarations: [users_component_1.UsersComponent, user_form_component_1.UserFormComponent],
                         providers: [users_service_1.UsersService, can_deactivate_on_dirty_1.PreventUnsavedChangesGuard],
                     }), 
                     __metadata('design:paramtypes', [])

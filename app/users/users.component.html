@@ -10,7 +10,7 @@
     <tr *ngFor="let user of users">
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
-        <td><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+        <td><a [routerLink]="[user.id]"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+        <td><a (click)="deleteUser(user)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
     </tr>
 </table>

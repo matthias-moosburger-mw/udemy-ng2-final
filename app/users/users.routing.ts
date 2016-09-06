@@ -1,19 +1,19 @@
 
 import { RouterModule  }    		  from '@angular/router';
 
-import { NewUserComponent } 		  from './newuser.component';
+import { UserFormComponent } 		  from './user-form.component';
 import { UsersComponent }    		  from './users.component';
 import { PreventUnsavedChangesGuard } from '../can-deactivate-on-dirty';
 
 export const usersRouting = RouterModule.forChild([
 	{ 
 		path: 'users/:id', 
-		component: NewUserComponent,
+		component: UserFormComponent,
 		canDeactivate: [ PreventUnsavedChangesGuard ]  
 	},
 	{ 
 		path: 'users/new', 
-		component: NewUserComponent,
+		component: UserFormComponent,
 		canDeactivate: [ PreventUnsavedChangesGuard ]  
 	},
     { path: 'users', component: UsersComponent },

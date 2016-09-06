@@ -6,7 +6,7 @@ import { RouterModule }        from '@angular/router';
 import { HttpModule }          from '@angular/http';
 
 import { User }                from './user';
-import { NewUserComponent }   from './newuser.component';
+import { UserFormComponent }   from './user-form.component';
 import { UsersComponent }      from './users.component';
 import { UsersService }         from './users.service';
 import { PreventUnsavedChangesGuard } from '../can-deactivate-on-dirty';
@@ -14,8 +14,8 @@ import { PreventUnsavedChangesGuard } from '../can-deactivate-on-dirty';
 
 @NgModule({
     imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, HttpModule],
-    exports: [UsersComponent, NewUserComponent],
-    declarations: [UsersComponent, NewUserComponent],
+    exports: [UsersComponent, UserFormComponent],
+    declarations: [UsersComponent, UserFormComponent],
     providers: [UsersService, PreventUnsavedChangesGuard],
 })
 export class UsersModule { }

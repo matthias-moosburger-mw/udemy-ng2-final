@@ -1,4 +1,4 @@
-System.register(['@angular/core', 'app/users/users.service'], function(exports_1, context_1) {
+System.register(['@angular/core', './users.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -24,21 +24,29 @@ System.register(['@angular/core', 'app/users/users.service'], function(exports_1
             UsersComponent = (function () {
                 function UsersComponent(service) {
                     this.service = service;
-                    this.users = [];
                 }
                 UsersComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    this.service.getUsers().subscribe(function (users) { return _this.users = users; });
-                    ;
+                    this.service.getUsers().subscribe(function (users) { _this.users = users; });
+                };
+                UsersComponent.prototype.deleteUser = function (user) {
+                    var _this = this;
+                    var index = this.users.indexOf(user);
+                    // Optimistic deleting
+                    if (confirm("Do you really want to delete user: " + user.name + "?")) {
+                        this.service.deleteUser(user).subscribe(function (result) { return _this.users.splice(index, 1); }, function (err) {
+                            alert("Could not delete user: " + user.name);
+                            _this.users.splice(index, 0, user);
+                        });
+                    }
                 };
                 UsersComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/users/users.component.html'
                     }), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof users_service_1.UsersService !== 'undefined' && users_service_1.UsersService) === 'function' && _a) || Object])
+                    __metadata('design:paramtypes', [users_service_1.UsersService])
                 ], UsersComponent);
                 return UsersComponent;
-                var _a;
             }());
             exports_1("UsersComponent", UsersComponent);
         }

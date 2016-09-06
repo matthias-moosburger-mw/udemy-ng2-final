@@ -31,8 +31,20 @@ System.register(['@angular/core', '@angular/http', 'rxjs/add/operator/map'], fun
                     return this.http.get(this.usersUrl)
                         .map(function (res) { return res.json(); });
                 };
+                UsersService.prototype.getUser = function (id) {
+                    return this.http.get(this.usersUrl + "/" + id)
+                        .map(function (res) { return res.json(); });
+                };
                 UsersService.prototype.addUser = function (user) {
                     return this.http.post(this.usersUrl, JSON.stringify(user))
+                        .map(function (res) { return res.json(); });
+                };
+                UsersService.prototype.updateUser = function (user) {
+                    return this.http.put(this.usersUrl + "/" + user.id, JSON.stringify(user))
+                        .map(function (res) { return res.json(); });
+                };
+                UsersService.prototype.deleteUser = function (user) {
+                    return this.http.delete(this.usersUrl + "/" + user.id)
                         .map(function (res) { return res.json(); });
                 };
                 UsersService = __decorate([
