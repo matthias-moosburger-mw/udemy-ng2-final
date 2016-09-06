@@ -3,12 +3,14 @@ import { PostService } from './posts.service';
 import { UsersService } from '../users/users.service';
 import { Post } from './post';
 import { SpinnerComponent } from '../shared/spinner.component';
+import { PaginationComponent } from '../shared/pagination.component';
 import { User } from '../users/user';
+import * as _ from 'underscore';
 
 
 @Component({
     templateUrl: 'app/posts/posts.component.html',
-    directives: [SpinnerComponent],
+    directives: [SpinnerComponent, PaginationComponent],
     styles: [`
     .list-group-item:hover, .selected {
         background-color: #f5f5f5;
@@ -19,9 +21,11 @@ import { User } from '../users/user';
 export class PostsComponent implements OnInit {
     private selectedPost: Post;
     private selectedComments: any[];
-    private posts: Post[];
+    private posts: Post[] = [];
     private postsLoaded: Post[];
     private users: User[];
+    private pagedPosts = [];
+    public pageSize = 10;
     postsLoading = true;
     commentsLoading = true;
 
@@ -38,6 +42,7 @@ export class PostsComponent implements OnInit {
             posts => {
                 this.postsLoaded = posts;
                 this.posts = this.postsLoaded;
+                this.pagedPosts = _.take(this.posts, this.pageSize);
                 this.postsLoading = false;
             }, err => { alert("Failed to load posts") }
         );
@@ -77,9 +82,20 @@ export class PostsComponent implements OnInit {
                     return false;
                 }
             });
+            this.pagedPosts = _.take(this.posts, this.pageSize);
+                        console.log('posts length', this.posts.length)
+            console.log('loadedposts length', this.postsLoaded.length)
         } else {
             this.posts = this.postsLoaded;
+            console.log('posts length', this.posts.length)
+            console.log('loadedposts length', this.postsLoaded.length)
+            this.pagedPosts = _.take(this.posts, this.pageSize);
         }
+    }
+
+    getPostsInPage(page){
+        var startIndex = (page - 1 ) * this.pageSize;
+        this.pagedPosts = _.take(_.rest(this.posts, startIndex), this.pageSize);
     }
 
 }

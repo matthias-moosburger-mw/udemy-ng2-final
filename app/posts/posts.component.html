@@ -5,10 +5,12 @@
             <option value="">Select a user</option>
             <option *ngFor="let user of users" value="{{user.id}}">{{ user.name }}</option>
         </select>
+        <pagination (pages-changed)="getPostsInPage($event)" [items]="posts"></pagination>
         <spinner [visible]="postsLoading"></spinner>
         <ul *ngIf="!postsLoading" class="list-group">
-            <li *ngFor="let post of posts" class="list-group-item" (click)="selectPost(post)" [class.selected]="selectedPost == post">
+            <li *ngFor="let post of pagedPosts" class="list-group-item" (click)="selectPost(post)" [class.selected]="selectedPost == post">
                 <h4>{{ post.title }}</h4>
+                ({{ post.userId }})
             </li>
         </ul>
     </div>

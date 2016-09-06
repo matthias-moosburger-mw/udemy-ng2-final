@@ -1,4 +1,4 @@
-System.register(['@angular/core', './posts.service', '../users/users.service', '../shared/spinner.component'], function(exports_1, context_1) {
+System.register(['@angular/core', './posts.service', '../users/users.service', '../shared/spinner.component', '../shared/pagination.component', 'underscore'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', './posts.service', '../users/users.service', '
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, posts_service_1, users_service_1, spinner_component_1;
+    var core_1, posts_service_1, users_service_1, spinner_component_1, pagination_component_1, _;
     var PostsComponent;
     return {
         setters:[
@@ -25,12 +25,21 @@ System.register(['@angular/core', './posts.service', '../users/users.service', '
             },
             function (spinner_component_1_1) {
                 spinner_component_1 = spinner_component_1_1;
+            },
+            function (pagination_component_1_1) {
+                pagination_component_1 = pagination_component_1_1;
+            },
+            function (_1) {
+                _ = _1;
             }],
         execute: function() {
             PostsComponent = (function () {
                 function PostsComponent(postService, userService) {
                     this.postService = postService;
                     this.userService = userService;
+                    this.posts = [];
+                    this.pagedPosts = [];
+                    this.pageSize = 10;
                     this.postsLoading = true;
                     this.commentsLoading = true;
                 }
@@ -43,6 +52,7 @@ System.register(['@angular/core', './posts.service', '../users/users.service', '
                     this.postService.loadPosts().subscribe(function (posts) {
                         _this.postsLoaded = posts;
                         _this.posts = _this.postsLoaded;
+                        _this.pagedPosts = _.take(_this.posts, _this.pageSize);
                         _this.postsLoading = false;
                     }, function (err) { alert("Failed to load posts"); });
                 };
@@ -75,15 +85,25 @@ System.register(['@angular/core', './posts.service', '../users/users.service', '
                                 return false;
                             }
                         });
+                        this.pagedPosts = _.take(this.posts, this.pageSize);
+                        console.log('posts length', this.posts.length);
+                        console.log('loadedposts length', this.postsLoaded.length);
                     }
                     else {
                         this.posts = this.postsLoaded;
+                        console.log('posts length', this.posts.length);
+                        console.log('loadedposts length', this.postsLoaded.length);
+                        this.pagedPosts = _.take(this.posts, this.pageSize);
                     }
+                };
+                PostsComponent.prototype.getPostsInPage = function (page) {
+                    var startIndex = (page - 1) * this.pageSize;
+                    this.pagedPosts = _.take(_.rest(this.posts, startIndex), this.pageSize);
                 };
                 PostsComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/posts/posts.component.html',
-                        directives: [spinner_component_1.SpinnerComponent],
+                        directives: [spinner_component_1.SpinnerComponent, pagination_component_1.PaginationComponent],
                         styles: ["\n    .list-group-item:hover, .selected {\n        background-color: #f5f5f5;\n    }\n    "
                         ]
                     }), 
