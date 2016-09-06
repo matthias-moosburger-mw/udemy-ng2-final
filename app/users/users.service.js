@@ -1,4 +1,4 @@
-System.register(['@angular/core'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/http', 'rxjs/add/operator/map'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,28 +10,35 @@ System.register(['@angular/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
-    var HomeComponent;
+    var core_1, http_1;
+    var UsersService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            }],
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (_1) {}],
         execute: function() {
-            HomeComponent = (function () {
-                function HomeComponent() {
+            UsersService = (function () {
+                function UsersService(http) {
+                    this.http = http;
+                    this.usersUrl = 'https://jsonplaceholder.typicode.com/users';
                 }
-                HomeComponent.prototype.ngOnInit = function () { };
-                HomeComponent = __decorate([
-                    core_1.Component({
-                        templateUrl: 'app/home/home.component.html'
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], HomeComponent);
-                return HomeComponent;
+                UsersService.prototype.getUsers = function () {
+                    return this.http.get(this.usersUrl)
+                        .map(function (res) { return res.json(); });
+                };
+                UsersService = __decorate([
+                    core_1.Injectable(), 
+                    __metadata('design:paramtypes', [http_1.Http])
+                ], UsersService);
+                return UsersService;
             }());
-            exports_1("HomeComponent", HomeComponent);
+            exports_1("UsersService", UsersService);
         }
     }
 });
-//# sourceMappingURL=home.component.js.map
+//# sourceMappingURL=users.service.js.map

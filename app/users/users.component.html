@@ -1,1 +1,16 @@
 <h1>Users</h1>
+<a routerLink="new" class="btn btn-primary">Add User</a>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
+        <td><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+    </tr>
+</table>
